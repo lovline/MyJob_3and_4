@@ -19,6 +19,18 @@ create table if not exists attendance (id int auto_increment,
 					   index(type),
 					   constraint attendance_userid foreign key(user_id) references user(id)
 );
+-- 记事本
+create table if not exists notepad (id int auto_increment,
+				   user_id int,
+				   title varchar(100),
+				   content varchar(200),
+				   create_time datetime,
+				   last_edit_time datetime,
+				   status tinyint, /*草稿，定稿*/
+				   primary key(id), 
+				   index(status),
+				   constraint notepad_id foreign key(user_id) references user(id) 
+);
 
 -- 请假
 create table if not exists absence (id int auto_increment,

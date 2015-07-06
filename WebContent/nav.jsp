@@ -45,6 +45,7 @@
       	<c:when test="${is_logged}" >
       	<li><a href="${pageContext.request.contextPath}/checkin/">考勤</a></li>
       	<li><a href="${pageContext.request.contextPath}/askleave/">请假</a></li>
+      	<li><a href="${pageContext.request.contextPath}/notepadList/">记事本</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${ userBean.realname } <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
