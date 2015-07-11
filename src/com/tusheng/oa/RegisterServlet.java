@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/register/")
+@WebServlet("/register")
 public class RegisterServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,7 +19,7 @@ public class RegisterServlet extends BaseServlet {
      */
     public RegisterServlet() {
         super();
-        this.setTitle("ע��");
+        this.setTitle("途晟科技在线注册");
     }
 
 	/**

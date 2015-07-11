@@ -22,7 +22,7 @@ public class LoginServlet extends BaseServlet {
      */
     public LoginServlet() {
         super();
-        this.setTitle("��¼");
+        this.setTitle("途晟科技登陆");
     }
 
 	/**

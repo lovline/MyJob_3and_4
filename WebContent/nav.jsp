@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/index/">${ SITE_NAME } </a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/index">途晟科技在线注册系统</a>
     </div>
 
     
@@ -55,8 +55,8 @@
         </li>
       	</c:when>
       	<c:otherwise>
-      	<li><a href="${pageContext.request.contextPath}/register/">注册</a></li>
-      	<li><a href="${pageContext.request.contextPath}/login/">登录</a></li>
+      	<li><a href="${pageContext.request.contextPath}/register">注册&nbsp;register</a></li>
+      	<li><a href="${pageContext.request.contextPath}/login/">登录&nbsp;login</a></li>
       	</c:otherwise>
         </c:choose>
       </ul>
