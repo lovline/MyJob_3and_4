@@ -36,7 +36,7 @@ public class BaseServlet extends HttpServlet {
     	if (session.getAttribute("is_logged") == null) return;
     	boolean is_logged = (boolean) session.getAttribute("is_logged");
     	if (is_logged){
-    		// ÒÑ¾­µÇÂ¼
+    		// ï¿½Ñ¾ï¿½ï¿½ï¿½Â¼
     		if (session.getAttribute("userid") == null){
     			session.removeAttribute("is_logged");
     			return;
@@ -54,7 +54,7 @@ public class BaseServlet extends HttpServlet {
     }
     
     public void setTitle(String s){
-    	this.title = s + "-" + Constant.SITE_NAME;
+    	this.title = s;
     }
 
 	/**

@@ -7,7 +7,7 @@ create table if not exists user (id int auto_increment,
 				   last_login_at datetime,
 				   is_active tinyint,
 				   status tinyint, 
-				   primary key(id), index(email), index(is_active), index(status)
+				   primary key(id), index(username), index(is_active), index(status)
 );
 
 

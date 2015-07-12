@@ -41,10 +41,10 @@ public class LoginServlet extends BaseServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		UserBean bean = new UserBean();
-		bean.setEmail(email);
+		bean.setUsername(username);
 		bean.setPassword(password);
 		request.setAttribute("userBean", bean);
 		boolean is_succ = bean.login();

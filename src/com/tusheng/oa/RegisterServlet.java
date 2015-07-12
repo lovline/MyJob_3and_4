@@ -1,11 +1,14 @@
 package com.tusheng.oa;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * Servlet implementation class RegisterServlet
@@ -36,6 +39,45 @@ public class RegisterServlet extends BaseServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		
+		String username = request.getParameter("username");
+		String realname=request.getParameter("realname");
+		String password = request.getParameter("password");
+		if(username==null || username.trim().isEmpty()){
+			String alert = URLEncoder.encode("注册时用户名不能为空", "utf-8");
+			String url = request.getContextPath()+ "/register?alert="+alert;
+			response.sendRedirect(url);
+			return;
+		}else if(realname==null || realname.trim().isEmpty()){
+			String alert = URLEncoder.encode("注册时用户名不能为空", "utf-8");
+			String url = request.getContextPath()+ "/register?alert="+alert;
+			response.sendRedirect(url);
+			return;
+		}
+		else if(password == null || password.trim().isEmpty()){
+			String alert = URLEncoder.encode("注册时密码不能为空", "utf-8");
+			String url = request.getContextPath()+ "/register?alert="+alert;
+			response.sendRedirect(url);
+			return;
+		}
+		UserBean bean = new UserBean();
+		boolean flag = bean.register(username, password);
+		//System.out.println("test...");
+		if (flag){
+			String alert = URLEncoder.encode("Registered Success , Please Log In", "utf-8");
+			//String 
+			String url = request.getContextPath()+ "/result?alert="+alert;
+			response.sendRedirect(url);
+			return;
+		}  
+		else{
+			String alert = URLEncoder.encode("用户名已经存在，请重新注册", "utf-8");
+			String url = request.getContextPath()+ "/register?alert="+alert;
+			response.sendRedirect(url);
+			return;
+		}  
+		
 	}
 
 }

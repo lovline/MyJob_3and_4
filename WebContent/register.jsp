@@ -21,14 +21,14 @@
   <div class="form-group" style="margin-top: 20px">
     <label for="password" class="col-sm-2 control-label"><font size="4">p</font><font size="3">assword</font></label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="password" name="password" placeholder="">
+      <input type="password" class="form-control" id="password" name="password" placeholder="pass word">
     </div>
   </div>
   <div class="form-group" style="margin-top: 20px">
     <div class="col-sm-offset-2 col-sm-10">
       <div class="checkbox">
         <label>
-          <input type="checkbox" name="remember"> 记住我的登录
+          <input type="checkbox" name="remember"> remember me .
         </label>
       </div>
     </div>

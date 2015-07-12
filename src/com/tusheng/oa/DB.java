@@ -8,11 +8,11 @@ import java.sql.Statement;
 
 public class DB {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://localhost/oa";
+	private static final String DB_URL = "jdbc:mysql://localhost/ums";
 	private static final String DB_USER = "root";
-	private static final String DB_PASS = "java";
+	private static final String DB_PASS = "lovline";
 	private Connection conn;
-
+	//这里使用UMS数据库下面的几个创建好的表。对应user.sql
 	public DB(){
 		init();
 	}

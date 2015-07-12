@@ -5,9 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+
 public class UserBean {
 	private int id;
-	private String email;
+	private String username;
 	private String password;
 	private int status;
 	private boolean is_active;
@@ -16,9 +17,34 @@ public class UserBean {
 	private Date created_at;
 	
 	
+	public boolean register(String username,String password){
+		DB db=new DB();
+		String sql="select id from user where username=\""+
+				username+"\"";
+		System.out.println(username);
+		System.out.println(sql);
+		ResultSet rs=db.select(sql);
+		try {
+			if(rs.next()){
+				return false;
+			}else{
+				String s="insert into user set username=\""+
+				username+"\",password=\""+password+"\"";
+				db.insert(s);
+				return true;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return false;
+		}
+		 
+	}
+	
+	
 	public boolean login(){
 		DB db = new DB();
-		String sql = "select * from user where email=\""+ email + "\" and password=\""+password+"\"";
+		String sql = "select * from user where username=\""+ username + "\" and password=\""+password+"\"";
 		ResultSet rs = db.select(sql);
 		try {
 			if (rs.next()){
@@ -73,11 +99,11 @@ public class UserBean {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
