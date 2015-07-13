@@ -11,8 +11,22 @@
 <title>${ title }</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/My97DatePicker/WdatePicker.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css"></link>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css"></link>
+
+<style type="text/css">
+	.divv{
+			margin-top: 20px;
+		}
+</style>
+
+
+<script type="text/javascript">
+	function openwin(){
+		window.open("#","_blank",",left=240,top=200,height=400,width=800,location=no,toolbar=no,resizable=no,menubar=no");
+	}
+</script>
 
 </head>
 <body>

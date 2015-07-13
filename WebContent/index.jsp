@@ -6,5 +6,8 @@
 <h1>途晟科技首页</h1>
 </div>
 
+<div style="margin-top: 20px">
+	<img src="img/bg.jpg" width="850px" height="400px"/>
+</div>
 
 <%@ include file="footer.jsp" %>

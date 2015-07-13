@@ -1,6 +1,7 @@
 package com.tusheng.oa;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login/")
+@WebServlet("/login")
 public class LoginServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,6 +32,13 @@ public class LoginServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		super.doGet(request, response);
+		String alert = request.getParameter("alert");
+		boolean hasAlert = false;
+		if (alert != null && !alert.isEmpty()){
+			request.setAttribute("alert", alert);
+			hasAlert = true;
+		}
+		request.setAttribute("hasAlert", hasAlert);
 		String jsp = "/login.jsp";
 		RequestDispatcher dispacher = request.getRequestDispatcher(jsp);
 		dispacher.forward(request, response);
@@ -54,7 +62,9 @@ public class LoginServlet extends BaseServlet {
 			response.sendRedirect(request.getContextPath() + "/index");
 		}
 		else{
-			response.sendRedirect(request.getContextPath() + "/register");
+			String alert = URLEncoder.encode("登陆失败，请正确填写用户名和秘密", "utf-8");
+			response.sendRedirect(request.getContextPath() + "/login?alert"+alert);
+			return;
 		}
 	}
 

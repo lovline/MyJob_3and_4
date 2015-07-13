@@ -3,6 +3,16 @@
 <%@ include file="header.jsp" %>
 <%@ include file="nav.jsp" %>
 
+<c:if test="${ hasAlert }">
+				<div class="alert alert-warning alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					${ alert }
+				</div>
+			</c:if>
+
 <div class="row">
 <div class='col-md-8'>
 <form class="form-horizontal" method="post">

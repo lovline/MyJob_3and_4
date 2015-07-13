@@ -13,5 +13,8 @@
     <li><a href="#">我的奖惩</a></li>
   </ul>
 </div>
+<div style="margin-top: 20px">
+	<img src="img/bg1.jpg" width="850px" height="500px"/>
+</div>
 
 <%@ include file="footer.jsp" %>

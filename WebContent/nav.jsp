@@ -62,7 +62,7 @@
       	</c:when>
       	<c:otherwise>
       	<li><a href="${pageContext.request.contextPath}/register">注册&nbsp;register</a></li>
-      	<li><a href="${pageContext.request.contextPath}/login/">登录&nbsp;login</a></li>
+      	<li><a href="${pageContext.request.contextPath}/login">登录&nbsp;login</a></li>
       	</c:otherwise>
         </c:choose>
       </ul>

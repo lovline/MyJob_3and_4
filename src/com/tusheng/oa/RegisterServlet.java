@@ -31,6 +31,14 @@ public class RegisterServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		super.doGet(request, response);
+		String alert = request.getParameter("alert");
+		boolean hasAlert = false;
+		if (alert != null && !alert.isEmpty()){
+			request.setAttribute("alert", alert);
+			hasAlert = true;
+		}
+		request.setAttribute("hasAlert", hasAlert);
+		request.setAttribute("alert", alert);
 		request.getRequestDispatcher("/register.jsp").forward(request, response);
 	}
 
@@ -50,7 +58,7 @@ public class RegisterServlet extends BaseServlet {
 			response.sendRedirect(url);
 			return;
 		}else if(realname==null || realname.trim().isEmpty()){
-			String alert = URLEncoder.encode("注册时用户名不能为空", "utf-8");
+			String alert = URLEncoder.encode("注册时真实名不能为空", "utf-8");
 			String url = request.getContextPath()+ "/register?alert="+alert;
 			response.sendRedirect(url);
 			return;
@@ -67,7 +75,7 @@ public class RegisterServlet extends BaseServlet {
 		if (flag){
 			String alert = URLEncoder.encode("Registered Success , Please Log In", "utf-8");
 			//String 
-			String url = request.getContextPath()+ "/login/?alert="+alert;
+			String url = request.getContextPath()+ "/login?alert="+alert;
 			response.sendRedirect(url);
 			return;
 		}  
