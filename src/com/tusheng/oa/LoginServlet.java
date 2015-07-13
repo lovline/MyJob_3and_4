@@ -40,7 +40,6 @@ public class LoginServlet extends BaseServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		UserBean bean = new UserBean();
@@ -52,10 +51,10 @@ public class LoginServlet extends BaseServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("is_logged", true);
 			session.setAttribute("userid", bean.getId());
-			response.sendRedirect(request.getContextPath() + "/index/");
+			response.sendRedirect(request.getContextPath() + "/index");
 		}
 		else{
-			response.sendRedirect(request.getContextPath() + "/register/");
+			response.sendRedirect(request.getContextPath() + "/register");
 		}
 	}
 

@@ -3,7 +3,7 @@
 <%@ include file="header.jsp" %>
 <%@ include file="nav.jsp" %>
 <div class="row">
-<h1>首页</h1>
+<h1>途晟科技首页</h1>
 </div>
 
 

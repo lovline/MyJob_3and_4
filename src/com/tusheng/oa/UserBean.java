@@ -17,7 +17,7 @@ public class UserBean {
 	private Date created_at;
 	
 	
-	public boolean register(String username,String password){
+	public boolean register(String username,String password,String realname){
 		DB db=new DB();
 		String sql="select id from user where username=\""+
 				username+"\"";
@@ -29,7 +29,7 @@ public class UserBean {
 				return false;
 			}else{
 				String s="insert into user set username=\""+
-				username+"\",password=\""+password+"\"";
+				username+"\",password=\""+password+"\",realname=\""+realname+"\"";
 				db.insert(s);
 				return true;
 				

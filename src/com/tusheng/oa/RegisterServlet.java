@@ -62,12 +62,12 @@ public class RegisterServlet extends BaseServlet {
 			return;
 		}
 		UserBean bean = new UserBean();
-		boolean flag = bean.register(username, password);
+		boolean flag = bean.register(username, password,realname);
 		//System.out.println("test...");
 		if (flag){
 			String alert = URLEncoder.encode("Registered Success , Please Log In", "utf-8");
 			//String 
-			String url = request.getContextPath()+ "/result?alert="+alert;
+			String url = request.getContextPath()+ "/login/?alert="+alert;
 			response.sendRedirect(url);
 			return;
 		}  

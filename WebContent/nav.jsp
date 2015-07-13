@@ -43,9 +43,14 @@
       <ul class="nav navbar-nav navbar-right">
       <c:choose>
       	<c:when test="${is_logged}" >
-      	<li><a href="${pageContext.request.contextPath}/checkin/">考勤</a></li>
-      	<li><a href="${pageContext.request.contextPath}/askleave/">请假</a></li>
-      	<li><a href="${pageContext.request.contextPath}/notepadList/">记事本</a></li>
+      	
+      	<ul class="nav nav nav-pills">
+		  <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/index">首页</a></li>
+		  <li role="presentation"><a href="${pageContext.request.contextPath}/checkin/">考勤</a></li>
+		  <li role="presentation"><a href="${pageContext.request.contextPath}/askleave">请假</a></li>
+		  <li role="presentation"><a href="${pageContext.request.contextPath}/notepadList/">记事本</a></li>
+		
+      	
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${ userBean.realname } <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -53,6 +58,7 @@
             <li><a href="${pageContext.request.contextPath}/logout/">退出</a></li>
           </ul>
         </li>
+        </ul>
       	</c:when>
       	<c:otherwise>
       	<li><a href="${pageContext.request.contextPath}/register">注册&nbsp;register</a></li>
