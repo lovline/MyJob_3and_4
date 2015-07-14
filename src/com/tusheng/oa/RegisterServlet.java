@@ -2,12 +2,14 @@ package com.tusheng.oa;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -22,7 +24,7 @@ public class RegisterServlet extends BaseServlet {
      */
     public RegisterServlet() {
         super();
-        this.setTitle("途晟科技在线注册");
+        this.setTitle("途晟科技在线注册"); 
     }
 
 	/**
@@ -73,6 +75,7 @@ public class RegisterServlet extends BaseServlet {
 		boolean flag = bean.register(username, password,realname);
 		//System.out.println("test...");
 		if (flag){
+			//System.out.println(new Date());
 			String alert = URLEncoder.encode("Registered Success , Please Log In", "utf-8");
 			//String 
 			String url = request.getContextPath()+ "/login?alert="+alert;

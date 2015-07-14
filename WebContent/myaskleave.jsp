@@ -21,17 +21,17 @@
  
 </div>
 <div class="divv">
-	<form>
+	<form action="" method="get">
 	<div>
 	   <div style="margin-top: 10px;border-top: 1px solid green; padding-top:20px;" >
 		   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		   	类别：<select style="width:174px;height:26px">
+		   	类别：<select style="width:174px;height:26px" name="select">
 		   			<option  value=""  selected>
-		   			<option  value="bj" >病假
-		   			<option  value="sj" >事假
-		   			<option  value="cc" >出差
-		   			<option  value="hj" >婚假
-		   			<option  value="qt" >其他
+		   			<option  value="病假" >病假
+		   			<option  value="事假" >事假
+		   			<option  value="出差" >出差
+		   			<option  value="婚假" >婚假
+		   			<option  value="其他" >其他
 		   		</select>
 		</div>
 		<div style="float: right" >
@@ -54,12 +54,44 @@
 			开始时间：<input type="text" name="start_time" onclick="WdatePicker()"/> 
 			到<input type="text" name="end_time" onclick="WdatePicker()"/> 
 	   </div>
+	   <div align="center" style="width: 200px">
+	   	  <input class="btn btn-primary"  style="margin-top: 20px" type="submit" value="申请" />
+	   </div>
+	  
 	 </div>
 	 <div>
 		  <hr style="border:1px solid blue"/>
 	 </div>
 	</form>
 </div>
+<div style="border-top: 2px solid blue">
+	<table class="table table-striped table-hover">
+		<tr>
+  			<td>申请时间</td>
+			<td>申请人</td>
+			<td>类别</td>
+			<td>请假天数</td>
+			<td>开始时间</td>
+			<td>结束时间</td>
+			<td>申请备注</td>
+			<td>当前状态</td>
+			<td>审核人</td>
+		</tr>
+	 	<c:choose>
+      	<c:when test="${is_logged}" >
+      		
+      			<!--  ${ userBean.realname }  -->
+      		
+      	</c:when>
+      	<c:otherwise>
+      		<tr>
+      			<td colspan="9" align="center">没有符合条件的数据记录。</td>
+      		</tr>
+      	</c:otherwise>
+        </c:choose>
+	</table>
+</div>
+
 
 
 

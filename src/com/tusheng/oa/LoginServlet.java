@@ -3,6 +3,15 @@ package com.tusheng.oa;
 import java.io.IOException;
 import java.net.URLEncoder;
 
+
+
+
+
+
+
+
+import java.util.Date;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +51,7 @@ public class LoginServlet extends BaseServlet {
 		String jsp = "/login.jsp";
 		RequestDispatcher dispacher = request.getRequestDispatcher(jsp);
 		dispacher.forward(request, response);
+		
 	}
 
 	/**
@@ -50,11 +60,25 @@ public class LoginServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		//Date currenTime=new Date(0);
 		UserBean bean = new UserBean();
-		bean.setUsername(username);
-		bean.setPassword(password);
+		//bean.setUsername(username);
+		//bean.setPassword(password);
+		
+		/*
+		request.setAttribute("username", username);
+		request.setAttribute("password", password);
+		request.getRequestDispatcher("/myaskleave.jsp").forward(request, response);
+		this.getServletContext().setAttribute("username",username);
+		request.getRequestDispatcher("/myaskleave.jsp").forward(request, response);
+		HttpSession session2 = request.getSession();
+		session2.setAttribute("username", username);
+		request.getRequestDispatcher("/myaskleave.jsp").forward(request, response);*/
+		
+		
+		
 		request.setAttribute("userBean", bean);
-		boolean is_succ = bean.login();
+		boolean is_succ = bean.login(username,password);
 		if (is_succ){
 			HttpSession session = request.getSession();
 			session.setAttribute("is_logged", true);

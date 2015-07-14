@@ -3,7 +3,10 @@ package com.tusheng.oa;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 
 public class UserBean {
@@ -42,15 +45,20 @@ public class UserBean {
 	}
 	
 	
-	public boolean login(){
+	public boolean login(String username,String password){
 		DB db = new DB();
 		String sql = "select * from user where username=\""+ username + "\" and password=\""+password+"\"";
 		ResultSet rs = db.select(sql);
 		try {
 			if (rs.next()){
+				Date d = new Date();
+				DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String nowdate = format.format(d);
+				String s = "update user set status=1,is_active=1,created_at =\"" + nowdate + "\" where username=\""+username+"\"";
+				db.insert(s);
 				this.id = rs.getInt("id");
 				this.is_active = rs.getInt("is_active") == 1;
-				this.status = rs.getInt("status");
+				System.out.println(this.is_active);
 				this.realname = rs.getString("realname");
 				this.created_at = rs.getDate("created_at");
 				this.last_login_at = rs.getDate("last_login_at");
