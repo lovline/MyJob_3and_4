@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" %>
+<%@page import="com.tusheng.oa.AbsenceBean"%> 
+<%@page import="java.util.*"%>
 <%@ include file="header.jsp" %>
 
 
@@ -14,7 +16,7 @@
     <li><a href="#">我的奖惩</a></li>
   </ul>
   &nbsp; &nbsp; &nbsp;
-  <input class="btn btn-default" type="button" value="关于我的请假记录" />
+  <input class="btn btn-default" type="button" value="关于我的请假记录" onclick="showList()"/>
   <div style="margin-right: 10px;float: right">
   	 <button type="button" class="btn btn-success" onclick="openwin()"><font size="3">请假申请</font></button>
   </div>
@@ -78,10 +80,22 @@
 			<td>审核人</td>
 		</tr>
 	 	<c:choose>
-      	<c:when test="${is_logged}" >
+      	<c:when test="${is_logged}">
       		
-      			<!--  ${ userBean.realname }  -->
-      		
+	      	<c:forEach items="${ arrList }" var="abb">  
+            <tr>  
+                <td>${ abb.getCreated_at() }</td>  
+                <td></td>  
+                <td></td>  
+                <td>${ abb.getDays() }</td>  
+                <td>${ abb.getStart_time() }</td>  
+                <td>${ abb.getEnd_time() }</td>  
+                <td></td>  
+                <td>${ abb.getStatus() }</td>  
+                <td></td>  
+            </tr>  
+        </c:forEach>  
+			
       	</c:when>
       	<c:otherwise>
       		<tr>

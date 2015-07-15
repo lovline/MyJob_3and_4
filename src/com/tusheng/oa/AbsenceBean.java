@@ -3,81 +3,196 @@ package com.tusheng.oa;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AbsenceBean {
 	
 	private int id;
 	private int user_id;
-	private Date start_time;
-	private Date end_time;
+	private String start_time;
+	private String end_time;
 	private int status;
-	private Date created_at;
+	private String created_at;
+	private int days;
+	private String username;
+	private String remark;
+	private String auditor;
+	private String type;
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	private String application_start;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+	public String getStart_time() {
+		return start_time;
+	}
+
+	public void setStart_time(String start_time) {
+		this.start_time = start_time;
+	}
+
+	public String getEnd_time() {
+		return end_time;
+	}
+
+	public void setEnd_time(String end_time) {
+		this.end_time = end_time;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getRemark() {
 		return remark;
 	}
+
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
-	private String remark;
-	public int getId() {
-		return id;
+	public String getAuditor() {
+		return auditor;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setAuditor(String auditor) {
+		this.auditor = auditor;
 	}
-	public int getUser_id() {
-		return user_id;
+
+	public String getApplication_start() {
+		return application_start;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+
+	public void setApplication_start(String application_start) {
+		this.application_start = application_start;
 	}
-	public Date getStart_time() {
-		return start_time;
-	}
-	public void setStart_time(Date start_time) {
-		this.start_time = start_time;
-	}
-	public Date getEnd_time() {
-		return end_time;
-	}
-	public void setEnd_time(Date end_time) {
-		this.end_time = end_time;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public Date getCreated_at() {
-		return created_at;
-	}
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-	
+
 	public void inAbsence(int userid,String start_time,String end_time) {
 		DB db = new DB();
 		Date d = new Date();
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String nowdate = format.format(d);
+		System.out.println("************");
+		System.out.println(nowdate.length());
+		nowdate=nowdate.substring(0, 10);
+		System.out.println(nowdate);
 		String s = "insert into absence set user_id =\"" + userid + "\", start_time= \"" 
 					+ start_time + "\",end_time=\"" + end_time +"\",status=1,created_at =\"" + nowdate + "\"";
 		db.insert(s);
 		db.close();
 	}
 	
-	public ResultSet getAbsence(int userid){
+	public ArrayList<AbsenceBean> getAbsence(int userid){
 		DB db=new DB();
-		String sql="select absence from user where user_id=\""+
+		String sql="select * from absence where user_id=\""+
 				userid+"\"";
 		ResultSet rs=db.select(sql);
-		return rs;
+		ArrayList<AbsenceBean> arrList=new ArrayList<AbsenceBean>();
+	    if(rs != null){  
+	        try {
+	        	while(rs.next()){ 
+					AbsenceBean abb=new AbsenceBean();
+					
+					abb.setEnd_time(rs.getString("end_time"));
+					abb.setStart_time(rs.getString("start_time"));
+					abb.setStatus(rs.getInt("status"));
+					abb.setCreated_at(rs.getString("created_at"));
+			
+					
+					arrList.add(abb);
+					
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
+	        
+    	} 
+		return arrList;
 		
 	}
+	
+	public ArrayList<AbsenceBean> getAbsenceNotInDatabase(String application_start
+			,String type,String remark,String username){
+		
+		ArrayList<AbsenceBean> arrList=new ArrayList<AbsenceBean>();
+					AbsenceBean abb=new AbsenceBean();
+					abb.setApplication_start(application_start);
+					abb.setRemark(remark);
+					abb.setType(type);
+					abb.setUsername(username);
+					arrList.add(abb);
+    		 
+					return arrList;
+		
+	}
+	
+	public int getDays() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	    Date d1 = null;
+        Date d2 = null;
+        try {
+			d1 = format.parse(start_time);
+			d2 = format.parse(end_time);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        long diff = d2.getTime() - d1.getTime();
+        //long diffSeconds = diff / 1000 % 60;
+        //long diffMinutes = diff / (60 * 1000) % 60;
+        //long diffHours = diff / (60 * 60 * 1000) % 24;
+        int days =(int)(diff / (24 * 60 * 60 * 1000));
+	    System.out.println(days);
+		
+		return days;
+	}
+	
+	
 	
 
 }

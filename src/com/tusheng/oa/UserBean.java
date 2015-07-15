@@ -52,13 +52,14 @@ public class UserBean {
 		try {
 			if (rs.next()){
 				Date d = new Date();
-				DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				String nowdate = format.format(d);
 				String s = "update user set status=1,is_active=1,created_at =\"" + nowdate + "\" where username=\""+username+"\"";
 				db.insert(s);
 				this.id = rs.getInt("id");
+				//System.out.println(this.id);
 				this.is_active = rs.getInt("is_active") == 1;
-				System.out.println(this.is_active);
+				//System.out.println(this.is_active);
 				this.realname = rs.getString("realname");
 				this.created_at = rs.getDate("created_at");
 				this.last_login_at = rs.getDate("last_login_at");

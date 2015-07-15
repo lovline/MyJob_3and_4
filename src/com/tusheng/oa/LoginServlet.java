@@ -65,16 +65,10 @@ public class LoginServlet extends BaseServlet {
 		//bean.setUsername(username);
 		//bean.setPassword(password);
 		
-		/*
-		request.setAttribute("username", username);
-		request.setAttribute("password", password);
-		request.getRequestDispatcher("/myaskleave.jsp").forward(request, response);
-		this.getServletContext().setAttribute("username",username);
-		request.getRequestDispatcher("/myaskleave.jsp").forward(request, response);
 		HttpSession session2 = request.getSession();
 		session2.setAttribute("username", username);
-		request.getRequestDispatcher("/myaskleave.jsp").forward(request, response);*/
-		
+		//HttpSession session3 = request.getSession();
+		session2.setAttribute("password", password);
 		
 		
 		request.setAttribute("userBean", bean);
