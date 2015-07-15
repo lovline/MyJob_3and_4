@@ -2,6 +2,7 @@ package com.tusheng.oa;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -80,7 +81,7 @@ public class AbsenceBean {
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
@@ -88,7 +89,7 @@ public class AbsenceBean {
 	}
 
 	public String getRemark() {
-		return remark;
+		return this.remark;
 	}
 
 	public void setRemark(String remark) {
@@ -96,29 +97,34 @@ public class AbsenceBean {
 	}
 
 	public String getAuditor() {
-		return auditor;
+		return this.auditor;
 	}
 
 	public void setAuditor(String auditor) {
 		this.auditor = auditor;
 	}
 
-	public String getApplication_start() {
-		return application_start;
+	public Timestamp getApplication_start() {
+		Date d = new Date();
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String nowdate = format.format(d);
+		Timestamp date=Timestamp.valueOf(nowdate);
+		return date;
 	}
 
 	public void setApplication_start(String application_start) {
-		this.application_start = application_start;
+		
 	}
 
 	public void inAbsence(int userid,String start_time,String end_time) {
 		DB db = new DB();
 		Date d = new Date();
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String nowdate = format.format(d);
 		System.out.println("************");
 		System.out.println(nowdate.length());
-		nowdate=nowdate.substring(0, 10);
+		//nowdate=nowdate.substring(0, 10);
+		Timestamp date=Timestamp.valueOf(nowdate);
 		System.out.println(nowdate);
 		String s = "insert into absence set user_id =\"" + userid + "\", start_time= \"" 
 					+ start_time + "\",end_time=\"" + end_time +"\",status=1,created_at =\"" + nowdate + "\"";
@@ -131,6 +137,7 @@ public class AbsenceBean {
 		String sql="select * from absence where user_id=\""+
 				userid+"\"";
 		ResultSet rs=db.select(sql);
+		
 		ArrayList<AbsenceBean> arrList=new ArrayList<AbsenceBean>();
 	    if(rs != null){  
 	        try {
@@ -152,6 +159,7 @@ public class AbsenceBean {
 			}  
 	        
     	} 
+	    
 		return arrList;
 		
 	}
@@ -172,7 +180,7 @@ public class AbsenceBean {
 	}
 	
 	public int getDays() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date d1 = null;
         Date d2 = null;
         try {

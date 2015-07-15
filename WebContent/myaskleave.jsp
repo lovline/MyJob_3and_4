@@ -85,12 +85,12 @@
 	      	<c:forEach items="${ arrList }" var="abb">  
             <tr>  
                 <td>${ abb.getCreated_at() }</td>  
-                <td></td>  
-                <td></td>  
+                <td>${ abb.getUsername()  }</td>  
+                <td>${ abb.getType() }</td>  
                 <td>${ abb.getDays() }</td>  
                 <td>${ abb.getStart_time() }</td>  
                 <td>${ abb.getEnd_time() }</td>  
-                <td></td>  
+                <td>${ abb.getRemark() }</td>  
                 <td>${ abb.getStatus() }</td>  
                 <td></td>  
             </tr>  

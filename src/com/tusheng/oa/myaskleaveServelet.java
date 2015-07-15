@@ -38,6 +38,9 @@ public class myaskleaveServelet extends BaseServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	/* (non-Javadoc)
+	 * @see com.tusheng.oa.BaseServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		super.doGet(request, response);
 		
@@ -53,9 +56,12 @@ public class myaskleaveServelet extends BaseServlet {
 		System.out.println(session.getAttribute("password").toString());
 		String type=request.getParameter("select");
 		String remark=request.getParameter("remark");
+		
      
 	    AbsenceBean abb=new AbsenceBean();
-	    
+	    abb.setUsername(session.getAttribute("username").toString());
+	    abb.setAuditor("auditor");
+	    abb.setRemark(remark);
 	   
 	    UserBean bean=new UserBean();
 	    boolean flag=bean.login(session.getAttribute("username").toString(),session.getAttribute("password").toString());
@@ -68,6 +74,7 @@ public class myaskleaveServelet extends BaseServlet {
 			ArrayList<AbsenceBean> arrList=abb.getAbsence(userid);
 		    //request.setAttribute("arrList", arrList);
 			session.setAttribute("arrList", arrList);
+			//session.setAttribute("arrListNotInData", arrList.get(1));
 		    request.getRequestDispatcher("/myaskleave.jsp").forward(request, response);
 		    for(AbsenceBean ab: arrList){
 		    	System.out.println(ab.getStart_time());
