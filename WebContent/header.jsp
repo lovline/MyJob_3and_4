@@ -22,12 +22,29 @@
 </style>
 
 
+
+
+
+
+
 <script type="text/javascript">
 	function openwin(){
-		window.open("#","_blank",",left=240,top=200,height=400,width=800,location=no,toolbar=no,resizable=no,menubar=no");
+		
 	}
-	function showList(){
-		//点击按钮  就显示请假信息 默认不显示。。待完成。
+	function showOrHidden(){
+		//点击按钮  就显示请假信息 默认不显示。。
+		var dis = document.getElementById("display");
+		if(dis.style.display!="none"){
+			dis.style.display="none";
+			var button= document.getElementById("bb");
+			button.innerHTML = "show我的请假记录";
+		}
+		else{
+			dis.style.display="block";
+			var button= document.getElementById("bb");
+			button.innerHTML = "hide我的请假记录"
+
+		}
 	}
 </script>
 

@@ -57,18 +57,16 @@ public class myaskleaveServelet extends BaseServlet {
 		String type=request.getParameter("select");
 		String remark=request.getParameter("remark");
 		
-     
+		session.setAttribute("user_name", session.getAttribute("username").toString());
+		
 	    AbsenceBean abb=new AbsenceBean();
-	    abb.setUsername(session.getAttribute("username").toString());
-	    abb.setAuditor("auditor");
-	    abb.setRemark(remark);
 	   
 	    UserBean bean=new UserBean();
 	    boolean flag=bean.login(session.getAttribute("username").toString(),session.getAttribute("password").toString());
 	    if(flag){
 	    	int userid=bean.getId();
 	    	System.out.println(userid);
-	    	abb.inAbsence(userid, start_time, end_time);
+	    	abb.inAbsence(userid, start_time, end_time,type,remark);
 			session.setAttribute("userid", userid);
 			//遍历数据库absence的数据
 			ArrayList<AbsenceBean> arrList=abb.getAbsence(userid);

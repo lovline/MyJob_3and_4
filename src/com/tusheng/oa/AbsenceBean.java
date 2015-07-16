@@ -116,7 +116,7 @@ public class AbsenceBean {
 		
 	}
 
-	public void inAbsence(int userid,String start_time,String end_time) {
+	public void inAbsence(int userid,String start_time,String end_time,String type,String remark) {
 		DB db = new DB();
 		Date d = new Date();
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -127,7 +127,8 @@ public class AbsenceBean {
 		Timestamp date=Timestamp.valueOf(nowdate);
 		System.out.println(nowdate);
 		String s = "insert into absence set user_id =\"" + userid + "\", start_time= \"" 
-					+ start_time + "\",end_time=\"" + end_time +"\",status=1,created_at =\"" + nowdate + "\"";
+					+ start_time + "\",type= \"" + type + "\",remark= \"" 
+					+ remark + "\",end_time=\"" + end_time +"\",status=1,created_at =\"" + nowdate + "\"";
 		db.insert(s);
 		db.close();
 	}
@@ -141,17 +142,17 @@ public class AbsenceBean {
 		ArrayList<AbsenceBean> arrList=new ArrayList<AbsenceBean>();
 	    if(rs != null){  
 	        try {
+	        	
 	        	while(rs.next()){ 
-					AbsenceBean abb=new AbsenceBean();
-					
+	        		AbsenceBean abb=new AbsenceBean();
 					abb.setEnd_time(rs.getString("end_time"));
 					abb.setStart_time(rs.getString("start_time"));
 					abb.setStatus(rs.getInt("status"));
 					abb.setCreated_at(rs.getString("created_at"));
-			
+					abb.setType(rs.getString("type"));
+					abb.setRemark(rs.getString("remark"));
 					
 					arrList.add(abb);
-					
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -168,14 +169,14 @@ public class AbsenceBean {
 			,String type,String remark,String username){
 		
 		ArrayList<AbsenceBean> arrList=new ArrayList<AbsenceBean>();
-					AbsenceBean abb=new AbsenceBean();
-					abb.setApplication_start(application_start);
-					abb.setRemark(remark);
-					abb.setType(type);
-					abb.setUsername(username);
-					arrList.add(abb);
-    		 
-					return arrList;
+		AbsenceBean abb=new AbsenceBean();
+		abb.setApplication_start(application_start);
+		abb.setRemark(remark);
+		abb.setType(type);
+		abb.setUsername(username);
+		arrList.add(abb);
+ 
+		return arrList;
 		
 	}
 	

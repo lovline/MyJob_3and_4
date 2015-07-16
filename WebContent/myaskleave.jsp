@@ -16,9 +16,9 @@
     <li><a href="#">我的奖惩</a></li>
   </ul>
   &nbsp; &nbsp; &nbsp;
-  <input class="btn btn-default" type="button" value="关于我的请假记录" onclick="showList()"/>
+  <button class="btn btn-default" id="bb" type="button"  onclick="showOrHidden()">hide我的请假记录</button>
   <div style="margin-right: 10px;float: right">
-  	 <button type="button" class="btn btn-success" onclick="openwin()"><font size="3">请假申请</font></button>
+  	 <button type="button" class="btn btn-success" onclick="openwin()"><font size="3">紧急请假申请</font></button>
   </div>
  
 </div>
@@ -49,12 +49,12 @@
 	   </div>
 	 </div>
 		<div class="divv">
-			申请时间：<input  type="text" name="application_start" onclick="WdatePicker()"/> 
-			到<input type="text" name="application_end" onclick="WdatePicker()"/> 
+			申请时间：<input  type="text" name="application_start" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/> 
+			到<input type="text" name="application_end" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/> 
 		</div>
 	   <div class="divv" >
-			开始时间：<input type="text" name="start_time" onclick="WdatePicker()"/> 
-			到<input type="text" name="end_time" onclick="WdatePicker()"/> 
+			开始时间：<input type="text" name="start_time" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/> 
+			到<input type="text" name="end_time" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 
 	   </div>
 	   <div align="center" style="width: 200px">
 	   	  <input class="btn btn-primary"  style="margin-top: 20px" type="submit" value="申请" />
@@ -66,7 +66,7 @@
 	 </div>
 	</form>
 </div>
-<div style="border-top: 2px solid blue">
+<div style="border-top: 2px solid blue" id="display">
 	<table class="table table-striped table-hover">
 		<tr>
   			<td>申请时间</td>
@@ -85,7 +85,7 @@
 	      	<c:forEach items="${ arrList }" var="abb">  
             <tr>  
                 <td>${ abb.getCreated_at() }</td>  
-                <td>${ abb.getUsername()  }</td>  
+                <td>${ user_name  }</td>  
                 <td>${ abb.getType() }</td>  
                 <td>${ abb.getDays() }</td>  
                 <td>${ abb.getStart_time() }</td>  
@@ -105,6 +105,17 @@
         </c:choose>
 	</table>
 </div>
+
+<div  id="divFloat" align="center" style="position: absolute; z-index: 3; display: none; background-color: #fff;">
+	<div  >
+		开始时间：<input type="text" name="start_time" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/> <br />
+		返回时间<input type="text" name="end_time" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 
+   </div>
+   <div align="center" style="width: 200px">
+   	  <input class="btn btn-primary"  style="margin-top: 20px" type="submit" value="申请" />
+   </div>
+</div>
+
 
 
 
