@@ -6,7 +6,7 @@
 <h1>途晟科技首页</h1>
 </div>
 
-<div style="margin-top: 20px">
+<div style="margin-top: 20px;display: none" id="imgbg">
 	<img src="img/bg.jpg" width="850px" height="400px"/>
 </div>
 

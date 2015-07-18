@@ -55,7 +55,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${ userBean.realname } <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="${pageContext.request.contextPath}/profile/">用户中心</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout/">退出</a></li>
+            <li><a href="${pageContext.request.contextPath}/logout">退出</a></li>
           </ul>
         </li>
         </ul>

@@ -21,28 +21,28 @@
 		}
 </style>
 
-
-
-
-
-
-
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
 <script type="text/javascript">
+	$(function(){
+		$("#imgbg").slideDown(2000);
+		$("#imgbg2").slideDown(2000);
+		$("#trOpacity").css("opacity", 0.7);
+	})
 	function openwin(){
 		
 	}
 	function showOrHidden(){
 		//点击按钮  就显示请假信息 默认不显示。。
 		var dis = document.getElementById("display");
-		if(dis.style.display!="none"){
-			dis.style.display="none";
-			var button= document.getElementById("bb");
-			button.innerHTML = "show我的请假记录";
-		}
-		else{
+		if(dis.style.display=="none"){
 			dis.style.display="block";
 			var button= document.getElementById("bb");
-			button.innerHTML = "hide我的请假记录"
+			button.innerHTML = "hide我的请假记录";
+		}
+		else{
+			dis.style.display="none";
+			var button= document.getElementById("bb");
+			button.innerHTML = "show我的请假记录"
 
 		}
 	}

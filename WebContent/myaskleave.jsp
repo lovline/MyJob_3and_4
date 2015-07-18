@@ -16,7 +16,8 @@
     <li><a href="#">我的奖惩</a></li>
   </ul>
   &nbsp; &nbsp; &nbsp;
-  <button class="btn btn-default" id="bb" type="button"  onclick="showOrHidden()">hide我的请假记录</button>
+  <!--  -->
+  <button class="btn btn-default" id="bb" type="button" onclick="showOrHidden()" >show我的请假记录</button>
   <div style="margin-right: 10px;float: right">
   	 <button type="button" class="btn btn-success" onclick="openwin()"><font size="3">紧急请假申请</font></button>
   </div>
@@ -66,9 +67,9 @@
 	 </div>
 	</form>
 </div>
-<div style="border-top: 2px solid blue" id="display">
+<div style="border-top: 2px solid blue;display: none" id="display" >
 	<table class="table table-striped table-hover">
-		<tr>
+		<tr  id="trOpacity">
   			<td>申请时间</td>
 			<td>申请人</td>
 			<td>类别</td>
