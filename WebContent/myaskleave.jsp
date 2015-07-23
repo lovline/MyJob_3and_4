@@ -19,7 +19,8 @@
   <!--  -->
   <button class="btn btn-default" id="bb" type="button" onclick="showOrHidden()" >show我的请假记录</button>
   <div style="margin-right: 10px;float: right">
-  	 <button type="button" class="btn btn-success" onclick="openwin()"><font size="3">紧急请假申请</font></button>
+  	 <button type="button" class="btn btn-success" 
+  	 onclick="showPopup(500,400)"><font size="3">紧急请假申请</font></button>
   </div>
  
 </div>
@@ -107,17 +108,38 @@
 	</table>
 </div>
 
-<div  id="divFloat" align="center" style="position: absolute; z-index: 3; display: none; background-color: #fff;">
-	<div  >
-		开始时间：<input type="text" name="start_time" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/> <br />
-		返回时间<input type="text" name="end_time" id="d241" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> 
-   </div>
-   <div align="center" style="width: 200px">
-   	  <input class="btn btn-primary"  style="margin-top: 20px" type="submit" value="申请" />
-   </div>
+
+<div id="popDiv">
+	<div id="popTitle">
+		<!-- 标题div -->
+		<span class="title_left">紧急申请请假</span> <span class="title_right"><a
+			href="#" onclick="hidePopup();">关闭</a> </span>
+	</div>
+	<div id="popForm">
+		<!-- 表单div -->
+		<form action="myaskleave.jsp" method="get">
+			<center>
+				<p>
+				<div class="divv">紧急申请人：${ userBean.realname }</div>
+				<div class="divv">
+					开始时间：<input type="text" name="start_time" id="d241" class="Wdate"
+						onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+				</div>
+				<div class="divv">
+					结束时间：<input type="text" name="end_time" id="d241" class="Wdate"
+						onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+				</div>
+				</p>
+				<div class="divv" style="margin-top: 190px;">
+					<input type="submit" value="提交" />&nbsp; &nbsp;&nbsp;<input
+						type="reset" value="重置" /> &nbsp;&nbsp;&nbsp;<input type="reset"
+						value="取消" onclick="hidePopup()" />
+				</div>
+			</center>
+
+		</form>
+	</div>
 </div>
-
-
 
 
 
